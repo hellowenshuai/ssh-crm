@@ -1,9 +1,0 @@
-package cn.itcast.dao.impl;
-
-
-import cn.itcast.dao.CustomerDao;
-import cn.itcast.domain.Customer;
-
-public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao {
-
-}

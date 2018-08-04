@@ -1,9 +1,0 @@
-package cn.itcast.test;
-
-public class SVNTest {
-	private Long id;
-	private String name;
-	private Integer age;
-
-
-}
