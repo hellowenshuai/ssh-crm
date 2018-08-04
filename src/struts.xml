@@ -22,7 +22,7 @@
 			</interceptor-stack>
 		</interceptors>
 		<!-- 指定默认拦截器栈 -->
-		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+	<!-- 	<default-interceptor-ref name="myStack"></default-interceptor-ref> -->
 
 		<!-- 全局的结果集合配置 -->
 		<global-results>

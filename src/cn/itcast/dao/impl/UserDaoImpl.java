@@ -1,16 +1,25 @@
 package cn.itcast.dao.impl;
 
 
+import javax.annotation.Resource;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.stereotype.Repository;
 
 import cn.itcast.dao.UserDao;
 import cn.itcast.domain.User;
 //HibernateDaoSupport 为dao注入sessionFactory
+@Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	
+	@Resource(name="sessionFactory")
+	public void setSF(SessionFactory sf){
+		super.setSessionFactory(sf);
+	}
 	
 	@Override
 	public User getByUserCode(final String usercode) {

@@ -2,16 +2,24 @@ package cn.itcast.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.dao.LinkManDao;
 import cn.itcast.domain.Customer;
 import cn.itcast.domain.LinkMan;
 import cn.itcast.service.LinkManService;
 import cn.itcast.utils.PageBean;
-
+@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED,readOnly=false)
+@Service("linkManService")
 public class LinkManServiceImpl implements LinkManService {
-
+	
+	@Resource(name="linkManDao")
 	private LinkManDao lmd;
 	
 	public void setLmd(LinkManDao lmd) {

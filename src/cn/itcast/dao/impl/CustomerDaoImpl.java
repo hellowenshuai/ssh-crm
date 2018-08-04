@@ -3,24 +3,26 @@ package cn.itcast.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.stereotype.Repository;
 
 import cn.itcast.dao.CustomerDao;
 import cn.itcast.domain.Customer;
 
+@Repository("customerDao")
 public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao {
 
-	/*
-	 * select bd.dict_item_name,COUNT(*) total
-		FROM base_dict bd ,cst_customer c
-		WHERE c.cust_industry=bd.dict_id
-		GROUP BY c.cust_industry;
-	 * 
-	 * 
-	 * */
+	@Resource(name="sessionFactory")
+	public void setSF(SessionFactory sf){
+		super.setSessionFactory(sf);
+	}
+	
 	@Override
 	public List<Object[]> getIndustryCount() {
 		@SuppressWarnings("unchecked")

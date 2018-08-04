@@ -2,16 +2,24 @@ package cn.itcast.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.dao.SaleVisitDao;
 import cn.itcast.domain.Customer;
 import cn.itcast.domain.SaleVisit;
 import cn.itcast.service.SaleVisitService;
 import cn.itcast.utils.PageBean;
-
+@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED,readOnly=false)
+@Service("saleVisitService")
 public class SaleVisitServiceImpl implements SaleVisitService {
 
+	@Resource(name="saleVisitDao")
 	private SaleVisitDao svd;
 
 	@Override

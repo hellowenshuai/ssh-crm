@@ -2,9 +2,13 @@ package cn.itcast.web.action;
 
 import java.io.File;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,10 +18,19 @@ import cn.itcast.domain.Customer;
 import cn.itcast.domain.LinkMan;
 import cn.itcast.service.LinkManService;
 import cn.itcast.utils.PageBean;
+@Controller("linkManAction")
+@Scope("prototype")
 
 public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// 使用模型对象注入
 	private LinkMan linkMan = new LinkMan();
+	
+	@Resource(name="linkManService")
 	private LinkManService lms;
 
 	// 使用域属性注入

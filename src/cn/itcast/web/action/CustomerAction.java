@@ -3,9 +3,13 @@ package cn.itcast.web.action;
 import java.io.File;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,10 +19,18 @@ import cn.itcast.domain.Customer;
 import cn.itcast.service.CustomerService;
 import cn.itcast.utils.PageBean;
 
+@Controller("customerAction")
+@Scope("prototype")
+
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Resource(name="customerService")
+	private CustomerService cs;
 	// 使用模型对象注入
 	private Customer customer = new Customer();
-	private CustomerService cs;
 	
 	//上传的文件会自动封装到File对象
 	//在后台提供一个与前台input type=file组件 name相同的属性
